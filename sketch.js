@@ -49,51 +49,60 @@ function draw() {
   if (keyIsDown(70)) {
 
 
-  // bone grid
-  for (let x = 0; x <= width; x = x + 80) {
-    for (let y = 0; y <= height; y = y + 80) {
+    // bone grid
+    for (let x = 0; x <= width; x = x + 80) {
+      for (let y = 0; y <= height; y = y + 80) {
 
-      const xAngle = map(mouseX, 0, width, -4 * PI, 4 * PI, true);
-      const yAngle = map(mouseY, 0, height, -4 * PI, 4 * PI, true);
+        const xAngle = map(mouseX, 0, width, -4 * PI, 4 * PI, true);
+        const yAngle = map(mouseY, 0, height, -4 * PI, 4 * PI, true);
 
-      const angle = xAngle * (x / width) + yAngle * (y / height);
+        const angle = xAngle * (x / width) + yAngle * (y / height);
 
-      // single bone movement
-      const myX = x + 10 * cos(2 * PI * t + angle)*2;
-      const myY = y + 10 * sin(2 * PI * t + angle)*2;
+        // single bone movement
+        const myX = x + 10 * cos(2 * PI * t + angle) * 2;
+        const myY = y + 10 * sin(2 * PI * t + angle) * 2;
 
 
-     image(bone, myX, myY, 70, 50);
+        image(bone, myX, myY, 70, 50);
+      }
     }
-  }
-  // timing
-  t = t + 0.01;
+    // timing
+    t = t + 0.01;
 
 
-  background(0, 50);
+    background(0, 50);
 
-
-  if (mouseIsPressed) {
-    if (mySong.isPlaying() == false) {
-      mySong.play();
+    if (mouseIsPressed) {
+      if (mySong.isPlaying() == false) {
+        mySong.play();
+      }
+    } else {
+      mySong.stop();
     }
+
+    for (var i = 0; i < allMyGaster.length; i++) {
+
+      var tempGaster = allMyGaster[i];
+      tempGaster.move();
+      tempGaster.show();
+    }
+    //keydown
   } else {
-    mySong.stop();
+    background(0, 50);
+    imageMode(CENTER);
+    image(hallway, width / 2, height / 2, 900, 700);
+
+    var myText = "You're Gonna Have a Bad Time"
+    textFont("VT323");
+    textSize(80);
+    fill(255)
+    drawingContext.font = "120, VT323";
+    drawingContext.textAlign = "center";
+    text(myText, width / 1.7, height / 1.1);
+
+    image(sans_up, width /4.5  , height / 1.15 , 180, 150)
+
   }
-
-  for (var i = 0; i < allMyGaster.length; i++) {
-
-    var tempGaster = allMyGaster[i];
-    tempGaster.move();
-    tempGaster.show();
-  }
-//keydown
-} else {
-  background(0, 50);
-  imageMode(CENTER);
-  image(hallway, width / 2, height / 2, 900, 700);
-
-}
 }
 
 function Gaster(_x, _y, _size, _img) {
