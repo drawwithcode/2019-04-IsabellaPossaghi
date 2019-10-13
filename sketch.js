@@ -15,10 +15,11 @@ function preload() {
   sans_up = loadImage('./assests_images/sans_up.png');
   hallway = loadImage('./assests_images/hallway.png');
   soul = loadImage('./assests_images/soul.png');
-  gaster_shoot = loadImage('./assests_images/gaster_shoot.png')
-  bone = loadImage('./assests_images/bone.png')
+  gaster_shoot = loadImage('./assests_images/gaster_shoot.png');
+  bone = loadImage('./assests_images/bone.png');
+  energy = loadImage('./assests_images/energy.png');
 
-  mySong = loadSound('./assests_sound/megalovania.mp3')
+  mySong = loadSound('./assests_sound/megalovania.mp3');
 
 
 
@@ -50,6 +51,7 @@ function draw() {
 
 
     // bone grid
+
     for (let x = 0; x <= width; x = x + 80) {
       for (let y = 0; y <= height; y = y + 80) {
 
@@ -92,15 +94,15 @@ function draw() {
     imageMode(CENTER);
     image(hallway, width / 2, height / 2, 900, 700);
 
-    var myText = "You're Gonna Have a Bad Time"
+    var myText = "You're Gonna Have a Bad Time, Now Keep Down F"
     textFont("VT323");
-    textSize(80);
+    textSize(50);
     fill(255)
     drawingContext.font = "120, VT323";
     drawingContext.textAlign = "center";
     text(myText, width / 1.7, height / 1.1);
 
-    image(sans_up, width /4.5  , height / 1.15 , 180, 150)
+    image(sans_up, width / 4.5, height / 1.15, 180, 150)
 
   }
 }
@@ -110,7 +112,7 @@ function Gaster(_x, _y, _size, _img) {
   this.size = 240;
   this.x = _x;
   this.y = _y;
-  this.speed = 25;
+  this.speed = 20;
 
 
 
@@ -155,11 +157,22 @@ function Gaster(_x, _y, _size, _img) {
     if (mouseIsPressed) {
       imageMode(CENTER)
       image(gaster_shoot, this.x * random(1, 1.01), this.y * random(1, 1.01), 200, 250);
+      image(energy, this.x * random(1, 1.01), this.y * random(1, 1.01) , 100, 250);
       image(sans_up, width / 2 * random(1, 1.01), height / 2 * random(1, 1.01), 500, 470);
+
     } else {
       imageMode(CENTER)
       image(gaster, this.x * random(1, 1.01), this.y * random(1, 1.01), this.size, this.size);
       image(sans, width / 2, height / 2, 150, 200);
+
+      var myText = "Let's just get to the point. Keep Down F and Click"
+      textFont("VT323");
+      textSize(50);
+      fill("red")
+      drawingContext.font = "120, VT323";
+      drawingContext.textAlign = "center";
+      text(myText, width / 2, height / 1.4);
+
     }
     //your soul! FILL IT WITH DETERMINATION!
     image(soul, mouseX * random(1, 1.001), mouseY * random(1, 1.001), 60, 50)
