@@ -50,31 +50,6 @@ function draw() {
   //keydown
   if (keyIsDown(70)) {
 
-
-    // bone grid
-
-    for (let x = 0; x <= width; x = x + 80) {
-      for (let y = 0; y <= height; y = y + 80) {
-
-        const xAngle = map(mouseX, 0, width, -4 * PI, 4 * PI, true);
-        const yAngle = map(mouseY, 0, height, -4 * PI, 4 * PI, true);
-
-        const angle = xAngle * (x / width) + yAngle * (y / height);
-
-        // single bone movement
-        const myX = x + 10 * cos(2 * PI * t + angle) * 2;
-        const myY = y + 10 * sin(2 * PI * t + angle) * 2;
-
-
-        image(bone, myX, myY, 70, 50);
-      }
-    }
-    // timing
-    t = t + 0.01;
-
-    //translucent background
-    background(0, 50);
-
     //play megalovania!
     if (mouseIsPressed) {
       if (mySong.isPlaying() == false) {
@@ -86,6 +61,43 @@ function draw() {
     //volume analyzer
     volume = analyzer.getLevel();
     volume = map(volume, 0, 1, 0, height);
+
+
+    // bone grid
+
+    for (let x = 0; x <= width; x = x + 90) {
+      for (let y = 0; y <= height; y = y + 40) {
+
+        const xAngle = map(mouseX, 0, width, -4 * PI, 4 * PI, true);
+        const yAngle = map(mouseY, 0, height, -4 * PI, 4 * PI, true);
+
+        const angle = xAngle * (x / width) + yAngle * (y / height);
+
+        // single bone movement
+        const myX = x + 10 * cos(2 * PI * t + angle) * 2;
+        const myY = y + 10 * sin(2 * PI * t + angle) * 2;
+
+
+        image(bone, myX, myY, volume/2, volume/2);
+      }
+    }
+    // timing
+    t = t + 0.01;
+
+    //translucent background
+    background(0, 50);
+
+    // //play megalovania!
+    // if (mouseIsPressed) {
+    //   if (mySong.isPlaying() == false) {
+    //     mySong.play();
+    //   }
+    // } else {
+    //   mySong.stop();
+    // }
+    // //volume analyzer
+    // volume = analyzer.getLevel();
+    // volume = map(volume, 0, 1, 0, height);
 
 
     //define gaster
