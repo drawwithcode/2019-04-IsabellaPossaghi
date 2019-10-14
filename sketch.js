@@ -10,6 +10,7 @@ let t = 0; // time variable
 // let easing = 0.5;
 
 function preload() {
+  //LOADING IMAGES
   gaster = loadImage('./assests_images/gaster.png');
   sans = loadImage('./assests_images/sans.png');
   sans_up = loadImage('./assests_images/sans_up.png');
@@ -18,7 +19,7 @@ function preload() {
   gaster_shoot = loadImage('./assests_images/gaster_shoot.png');
   bone = loadImage('./assests_images/bone.png');
   energy = loadImage('./assests_images/energy.png');
-
+  //LOADING SOUND
   mySong = loadSound('./assests_sound/megalovania.mp3');
 
 
@@ -34,7 +35,7 @@ function setup() {
 
 
   for (var i = 0; i < amountOfGaster; i++) {
-
+    //gaster spawn point
     var tempx = width / 2;
     var tempy = height / 2;
 
@@ -81,23 +82,11 @@ function draw() {
         image(bone, myX, myY, volume/2, volume/2);
       }
     }
-    // timing
+    // timing bones
     t = t + 0.01;
 
     //translucent background
     background(0, 50);
-
-    // //play megalovania!
-    // if (mouseIsPressed) {
-    //   if (mySong.isPlaying() == false) {
-    //     mySong.play();
-    //   }
-    // } else {
-    //   mySong.stop();
-    // }
-    // //volume analyzer
-    // volume = analyzer.getLevel();
-    // volume = map(volume, 0, 1, 0, height);
 
 
     //define gaster
@@ -131,19 +120,19 @@ function Gaster(_x, _y, _size, _img) {
   this.size = 240;
   this.x = _x;
   this.y = _y;
-  this.speed = 20;
+  this.speed = 5;
 
 
 
-  var yIncrease = this.speed;
-  var xIncrease = this.speed;
+  var yIncrease = this.speed * random(1, 2);
+  var xIncrease = this.speed * random(1, 2);
 
 
 
   this.move = function() {
-    // gaster wandering around
-    this.x += xIncrease * random(1.5);
-    this.y += yIncrease * random(1.5);
+    //gaster wandering around
+    this.x += xIncrease * random(1,5);
+    this.y += yIncrease * random(1,5);
 
     //gaster stalking u
     // let targetX = mouseX;
@@ -155,8 +144,8 @@ function Gaster(_x, _y, _size, _img) {
     // y += dy * easing;
     //
     //
-    // this.x = x * xIncrease;
-    // this.y = y * yIncrease;
+    // this.x = (x+random(1,2)) * xIncrease ;
+    // this.y = (y+random(1,2)) * yIncrease ;
 
     if (this.y > windowHeight || this.y < 0) {
       yIncrease = -yIncrease;
@@ -175,8 +164,8 @@ function Gaster(_x, _y, _size, _img) {
 
     if (mouseIsPressed) {
       imageMode(CENTER)
-      image(gaster_shoot, this.x * random(1, 1.01), this.y * random(1, 1.01), 200, 250);
       image(energy, this.x * random(1, 1.01), this.y * random(1, 1.01), 100, 250);
+      image(gaster_shoot, this.x * random(1, 1.01), this.y * random(1, 1.01), 200, 250);
       image(sans_up, width / 2 * random(1, 1.01), height / 2 * random(1, 1.01), volume*5.5, volume*5);
 
     } else {
