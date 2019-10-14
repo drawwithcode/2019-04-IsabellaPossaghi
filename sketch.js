@@ -10,7 +10,7 @@ let t = 0; // time variable
 // let easing = 0.5;
 
 function preload() {
-  //LOADING IMAGES
+  //LOADING IMAGES 
   gaster = loadImage('./assests_images/gaster.png');
   sans = loadImage('./assests_images/sans.png');
   sans_up = loadImage('./assests_images/sans_up.png');
@@ -20,7 +20,7 @@ function preload() {
   bone = loadImage('./assests_images/bone.png');
   energy = loadImage('./assests_images/energy.png');
   //LOADING SOUND
-  mySong = loadSound('./assests_sound/megalovania.mp3');
+  mySong = loadSound('./assests_sound/megalovania.mp3'); //no copyright! it's a remixed version
 
 
 
