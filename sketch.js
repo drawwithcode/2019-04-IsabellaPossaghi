@@ -1,7 +1,7 @@
 var allMyGaster = [];
 var amountOfGaster = 6;
 let gaster;
-
+var analyzer;
 let t = 0; // time variable
 
 //stalking (easing) variables
@@ -27,9 +27,10 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  //background("black");
-  //imageMode(CENTER);
-  //image(hallway, width/2, height/2, hallway.width, hallway.height);
+
+  //song amplitude
+  analyzer = new p5.Amplitude();
+  analyzer.setInput(mySong);
 
 
   for (var i = 0; i < amountOfGaster; i++) {
@@ -71,9 +72,10 @@ function draw() {
     // timing
     t = t + 0.01;
 
-
+    //translucent background
     background(0, 50);
 
+    //play megalovania!
     if (mouseIsPressed) {
       if (mySong.isPlaying() == false) {
         mySong.play();
@@ -81,13 +83,19 @@ function draw() {
     } else {
       mySong.stop();
     }
+    //volume analyzer
+    volume = analyzer.getLevel();
+    volume = map(volume, 0, 1, 0, height);
 
+
+    //define gaster
     for (var i = 0; i < allMyGaster.length; i++) {
 
       var tempGaster = allMyGaster[i];
       tempGaster.move();
       tempGaster.show();
     }
+
     //keydown
   } else {
     background(0, 50);
@@ -103,7 +111,6 @@ function draw() {
     text(myText, width / 1.7, height / 1.1);
 
     image(sans_up, width / 4.5, height / 1.15, 180, 150)
-
   }
 }
 
@@ -157,8 +164,8 @@ function Gaster(_x, _y, _size, _img) {
     if (mouseIsPressed) {
       imageMode(CENTER)
       image(gaster_shoot, this.x * random(1, 1.01), this.y * random(1, 1.01), 200, 250);
-      image(energy, this.x * random(1, 1.01), this.y * random(1, 1.01) , 100, 250);
-      image(sans_up, width / 2 * random(1, 1.01), height / 2 * random(1, 1.01), 500, 470);
+      image(energy, this.x * random(1, 1.01), this.y * random(1, 1.01), 100, 250);
+      image(sans_up, width / 2 * random(1, 1.01), height / 2 * random(1, 1.01), volume*5.5, volume*5);
 
     } else {
       imageMode(CENTER)
