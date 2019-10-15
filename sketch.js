@@ -166,7 +166,7 @@ function Gaster(_x, _y, _size, _img) {
       imageMode(CENTER)
       image(energy, this.x * random(1, 1.01), this.y * random(1, 1.01), 100, 250);
       image(gaster_shoot, this.x * random(1, 1.01), this.y * random(1, 1.01), 200, 250);
-      image(sans_up, width / 2 * random(1, 1.01), height / 2 * random(1, 1.01), volume*5.5, volume*5);
+      image(sans_up, width / 2 * random(1, 1.01), height / 2 * random(1, 1.01), volume*3.5, volume*3);
 
     } else {
       imageMode(CENTER)
