@@ -10,7 +10,7 @@ let t = 0; // time variable
 // let easing = 0.5;
 
 function preload() {
-  //LOADING IMAGES 
+  //LOADING IMAGES no copyrigt
   gaster = loadImage('./assests_images/gaster.png');
   sans = loadImage('./assests_images/sans.png');
   sans_up = loadImage('./assests_images/sans_up.png');
@@ -161,7 +161,7 @@ function Gaster(_x, _y, _size, _img) {
   this.show = function() {
 
     push();
-
+    //gaster awaken
     if (mouseIsPressed) {
       imageMode(CENTER)
       image(energy, this.x * random(1, 1.01), this.y * random(1, 1.01), 100, 250);
